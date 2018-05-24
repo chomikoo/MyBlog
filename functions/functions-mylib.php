@@ -1,4 +1,24 @@
 <?php
+	
+	/////////////////////////////////////////////////
+	//Set thumbnail on save post
+	/////////////////////////////////////////////////
+
+	function set_featured_image_from_gallery() {
+	  $has_thumbnail = get_the_post_thumbnail($post->ID);
+
+	  if ( !$has_thumbnail ) {
+
+	    $images = get_field('gallery', false, false);
+	    $image_id = $images[0];
+
+	    if ( $image_id ) {
+	      set_post_thumbnail( $post->ID, $image_id );
+	    }
+	  }
+	}
+
+
 
 	function awesome_acf_responsive_image($image_id,$image_size,$max_width){
 

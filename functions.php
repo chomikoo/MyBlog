@@ -1,18 +1,14 @@
 <?php
 $functions_path = get_template_directory() . '/functions/';
 
-require_once ( $functions_path . 'functions-base.php' );
-require_once ( $functions_path . 'functions-menus.php' );
-require_once ( $functions_path . 'functions-widgets.php' );
-require_once ( $functions_path . 'functions-cpt.php' );
-require_once ( $functions_path . 'functions-shortcodes.php' );
-require_once ( $functions_path . 'functions-assets.php' );
-require_once ( $functions_path . 'functions-assets.php' );
-require_once ( $functions_path . 'functions-mylib.php' );
+require $functions_path . 'functions-admin.php' ;
+require $functions_path . 'enqueue.php' ;
 
+require $functions_path . 'functions-base.php' ;
+// require $functions_path . 'functions-menus.php' ;
+// require $functions_path . 'functions-widgets.php' ;
+// require $functions_path . 'functions-cpt.php' ;
+// require $functions_path . 'functions-shortcodes.php' ;
+// require $functions_path . 'functions-assets.php' ;
+// require $functions_path . 'functions-mylib.php' ;
 
-if (isset($_GET['frm'])) {
-    setcookie('frm',$_GET['frm'], time() + 86400, '/');
-}
-
-?>

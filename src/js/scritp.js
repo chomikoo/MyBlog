@@ -1,3 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-	console.log('he ll o');
-});    
+(function($){
+	'use strict'
+	console.log('admin jQuery');
+
+
+})(jQuery)
