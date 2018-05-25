@@ -6,10 +6,10 @@ require $functions_path . 'enqueue.php' ;
 require $functions_path . 'theme-support.php' ;
 
 
+require $functions_path . 'functions-cpt.php' ;
 require $functions_path . 'functions-base.php' ;
 // require $functions_path . 'functions-menus.php' ;
 // require $functions_path . 'functions-widgets.php' ;
-// require $functions_path . 'functions-cpt.php' ;
 // require $functions_path . 'functions-shortcodes.php' ;
 // require $functions_path . 'functions-assets.php' ;
 // require $functions_path . 'functions-mylib.php' ;

@@ -10,15 +10,17 @@
 
 		// Generate Admin Page
 		add_menu_page( 'Theme Options', 'MyBlog', 'manage_options', 'chomikoo_theme', 'chomikoo_theme_create_page', THEME_URL . '/icons/option_ico.png', 110);
-
+		/////////////////////////////
 		//Generate Admin Sub Pages //
+		////////////////////////////
 		// Sidebar
 		add_submenu_page('chomikoo_theme', 'Theme Settings', 'Sidebar', 'manage_options', 'chomikoo_theme', 'chomikoo_theme_create_page' );
 		// Theme Options
 		add_submenu_page( 'chomikoo_theme', 'Theme Options', 'Theme Options', 'manage_options' , 'chomikoo_theme_theme', 'chomikoo_theme_support_page' );
 		// Custom CSS
 		add_submenu_page( 'chomikoo_theme', 'Theme CSS Options', 'Custom CSS', 'manage_options' , 'chomikoo_theme_css', 'chomikoo_theme_settings_page' );
-
+		// Contact form
+		add_submenu_page( 'chomikoo_theme', 'Message options', 'Contact Form', 'manage_options' , 'chomikoo_theme_contact', 'chomikoo_theme_contact_form_page' );
 
 		add_action( 'admin_init', 'chomikoo_custom_settings');
 	}
@@ -68,16 +70,35 @@
 		add_settings_field( 'custom-header', 'Custom Header', 'chomikoo_custom_header', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 		add_settings_field( 'custom-background', 'Custom Background', 'chomikoo_custom_background', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 
+		// Custom Form Contact 
+		register_setting( 'chomikoo-contact-option', 'activate_contact'  );
+
+		add_settings_section( 'chomikoo-contact-section', 'Contact Form' , 'chomikoo_contact_section', 'chomikoo_theme_contact' );
+
+		add_settings_field( 'activate_form', 'Activate Contact Form', 'chomikoo_activate_contact', 'chomikoo_theme_contact', 'chomikoo-contact-section' );
+
+
+
 	}
 
 
-	//Post formats callback function
-	function chomikoo_post_formats_callback( $input ) {
-		return $input;
+	// Contact section sunctions0
+	function chomikoo_contact_section() {
+		echo 'Activate and Deactivate the Built-in Contact Form';
+	}
+
+	function chomikoo_activate_contact() {
+		$options = get_option( 'activate_contact' );
+		$checked = ( @$options == 1 ? 'checked' : '' ) ;
+		echo '<label><input type="checkbox" id="custom_header" name="activate_contact" value="1" '.$checked.' /></label>';
 	}
 
 	function chomikoo_theme_options() {
 		echo 'Activate and Deactivate specyfic Theme Support Options <--';
+	}
+	//Post formats callback function
+	function chomikoo_post_formats_callback( $input ) {
+		return $input;
 	}
 
 	function chomikoo_post_formats() {
@@ -103,7 +124,7 @@
 	}
 
 	function chomikoo_custom_background() {
-		
+
 		$options = get_option( 'custom_background' );
 		$checked = ( @$options[$format] == 1 ? 'checked' : '');
 
@@ -174,12 +195,16 @@
 		require_once( THEME_PATH . 'template-parts/admin/theme-support.php' );
 	}
 
+	function chomikoo_theme_contact_form_page() {
+		require_once( THEME_PATH . 'template-parts/admin/theme-contact-form.php' );
+	}
+
 	function theme_options_settings_page() {
 		echo 'Hello from theme_options_settings_page';
 	}
 
 	function chomikoo_theme_settings_page() {
-		echo 'lla';
+		echo 'cssy';
 	}
 
 
