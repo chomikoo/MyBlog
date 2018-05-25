@@ -33,4 +33,17 @@
 	});
 
 
+	$('#remove-picture').on('click', function(event){
+		console.log('remove');
+		event.preventDefault();
+
+		var answer = confirm("Are you sure you want to remove your Profile Picture?");
+
+		if(answer) {
+			$('#profile-picture').val('');
+			$('.chomikoo-general-form').submit();
+		} 
+		return;
+	})
+
 })(jQuery)

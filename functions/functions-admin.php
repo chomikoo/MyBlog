@@ -11,12 +11,13 @@
 		// Generate Admin Page
 		add_menu_page( 'Theme Options', 'MyBlog', 'manage_options', 'chomikoo_theme', 'chomikoo_theme_create_page', THEME_URL . '/icons/option_ico.png', 110);
 
-		//Generate Admin Sub Pages 
-		add_submenu_page('chomikoo_theme', 'Theme Settings', 'General', 'manage_options', 'chomikoo_theme', 'chomikoo_theme_create_page' );
-
-		add_submenu_page( 'chomikoo_theme', 'Theme CSS Options', 'Custom CSS', 'manage_options' , 'chomikoo_theme_css', 'chomikoo_theme_settings_page' );
-
+		//Generate Admin Sub Pages //
+		// Sidebar
+		add_submenu_page('chomikoo_theme', 'Theme Settings', 'Sidebar', 'manage_options', 'chomikoo_theme', 'chomikoo_theme_create_page' );
+		// Theme Options
 		add_submenu_page( 'chomikoo_theme', 'Theme Options', 'Theme Options', 'manage_options' , 'chomikoo_theme_theme', 'chomikoo_theme_support_page' );
+		// Custom CSS
+		add_submenu_page( 'chomikoo_theme', 'Theme CSS Options', 'Custom CSS', 'manage_options' , 'chomikoo_theme_css', 'chomikoo_theme_settings_page' );
 
 
 		add_action( 'admin_init', 'chomikoo_custom_settings');
@@ -25,7 +26,6 @@
 	add_action('admin_menu', 'chomikoo_add_admin_page');
 
 	//Activate custom settings
-
 	function chomikoo_custom_settings() {
 
 		register_setting( 'chomikoo-settings-group', 'profile_picture' );
@@ -43,11 +43,8 @@
 
 
 		add_settings_section( 'chomikoo-sidebar-options', 'Sidebar Options', 'chomikoo_sidebar_options', 'chomikoo_theme' );
-
 		add_settings_field( 'sidebar-picture', 'Profile Picture', 'chomikoo_sidebar_picture', 'chomikoo_theme', 'chomikoo-sidebar-options' );
-
 		add_settings_field( 'sidebar-name', 'Full Name', 'chomikoo_sidebar_name', 'chomikoo_theme', 'chomikoo-sidebar-options' );
-
 		add_settings_field( 'sidebar-description', 'Description', 'chomikoo_sidebar_description', 'chomikoo_theme', 'chomikoo-sidebar-options' );
 
 		add_settings_field( 'sidebar-twitter', 'Twitter', 'chomikoo_sidebar_twitter', 'chomikoo_theme', 'chomikoo-sidebar-options' );
@@ -59,10 +56,18 @@
 
 		// Theme support Options
 		register_setting( 'chomikoo-theme-support', 'post_formats' , 'chomikoo_post_formats_callback' );
+		register_setting( 'chomikoo-theme-support', 'custom_header' );
+		register_setting( 'chomikoo-theme-support', 'custom_background' );
 
-		add_settings_section( 'chomikoo-theme-options', 'Theme Options', 'chomikoo_theme_options', 'chomikoo_theme' );
 
-		add_settings_field( 'post-formats', 'Post Formats', 'chomikoo_post_formats', 'chomikoo_theme', 'chomikoo-theme-options');
+
+		add_settings_section( 'chomikoo-theme-options', 'Theme Options', 'chomikoo_theme_options', 'chomikoo_theme_theme' );
+
+		add_settings_field( 'post-formats', 'Post Formats', 'chomikoo_post_formats', 'chomikoo_theme_theme', 'chomikoo-theme-options');
+
+		add_settings_field( 'custom-header', 'Custom Header', 'chomikoo_custom_header', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
+		add_settings_field( 'custom-background', 'Custom Background', 'chomikoo_custom_background', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
+
 	}
 
 
@@ -72,16 +77,38 @@
 	}
 
 	function chomikoo_theme_options() {
-		echo 'Activate and Deactivate specyfic Theme Support Options';
+		echo 'Activate and Deactivate specyfic Theme Support Options <--';
 	}
 
 	function chomikoo_post_formats() {
+		$options = get_option( 'post_formats' );
+
 		$formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
 		$output = '';
 		foreach( $formats as $format ) {
-			$output .= '<label><input type="checkbox" id="' . $format . '" name="' . $format . '" value="1">' . $format . ' </label><br>';
+			$checked = ( @$options[$format] == 1 ? 'checked' : '');
+			// echo $checked . '|';
+			$output .= '<label><input type="checkbox" id="' . $format . '" name="post_formats[' . $format . ']" value="1" ' . $checked . '>' . $format . ' </label><br>';
 		}
-		return $output;
+		echo $output;
+	}
+
+	function chomikoo_custom_header() {
+
+		$options = get_option( 'custom_header' );
+		$checked = ( @$options[$format] == 1 ? 'checked' : '');
+
+		echo '<label><input type="checkbox" id="custom_header" name="custom_header" value="1" ' . $checked . '>Activate the custom header</label>';
+		
+	}
+
+	function chomikoo_custom_background() {
+		
+		$options = get_option( 'custom_background' );
+		$checked = ( @$options[$format] == 1 ? 'checked' : '');
+
+		echo '<label><input type="checkbox" id="custom_background" name="custom_background" value="1" ' . $checked . '>Activate the custom background</label>';
+		
 	}
 
 
@@ -92,7 +119,11 @@
 
 	function chomikoo_sidebar_picture() {
 		$picture = esc_attr( get_option( 'profile_picture' ) );
-		echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="' . $picture . '" />';
+		if( empty($picture) ) {
+			echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="" />';
+		} else {
+			echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="' . $picture . '" /> <input type="button" class="button button-secondary" value="Remove" id="remove-picture">';
+		}
 	}
 
 	function chomikoo_sidebar_name() {

@@ -31,6 +31,6 @@
 	
 	<?php settings_fields( 'chomikoo-settings-group' ); ?>
  	<?php do_settings_sections( 'chomikoo_theme' ); ?>
-	<?php submit_button(); ?> 
+	<?php submit_button('Save Changes', 'primary', 'btnSubmit'); ?> 
  
 </form>

@@ -7,8 +7,8 @@
 	*/
 
 function chomikoo_load_admin_scripts( $hook ) {	
-
-	if( 'toplevel_page_theme_options' != $hook ) {
+	
+	if( 'toplevel_page_chomikoo_theme' != $hook ) {
 		return;
 	}
 
