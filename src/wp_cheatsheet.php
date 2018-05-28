@@ -195,3 +195,25 @@ Conditional tags
 
 
 ?>
+
+<!-- customize theme functions  -->
+
+	background: url(<?php header_image(); ?>);
+
+<?php
+	bloginfo();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

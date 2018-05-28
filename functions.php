@@ -1,8 +1,10 @@
 <?php
 $functions_path = get_template_directory() . '/functions/';
 
+require $functions_path . 'functions-cleanup.php';
 require $functions_path . 'functions-admin.php' ;
-require $functions_path . 'enqueue.php' ;
+
+require $functions_path . 'functions-enqueue.php' ;
 require $functions_path . 'theme-support.php' ;
 
 

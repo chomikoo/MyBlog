@@ -3,7 +3,7 @@
 *
 *	@package MyBlog
 *
-*	Template - Single Post
+*	Template - Heder
 */
 
 get_header(); ?>
@@ -46,7 +46,8 @@ get_header(); ?>
 
 <body <?php body_class(); ?>>
 	
-	<header id="header" class="header">
+	<header id="header" class="header" style="background: url(<?php header_image(); ?>);">
+		HEADER
 
 	</header>
 

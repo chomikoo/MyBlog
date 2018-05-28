@@ -45,6 +45,7 @@
 
 
 		add_settings_section( 'chomikoo-sidebar-options', 'Sidebar Options', 'chomikoo_sidebar_options', 'chomikoo_theme' );
+		
 		add_settings_field( 'sidebar-picture', 'Profile Picture', 'chomikoo_sidebar_picture', 'chomikoo_theme', 'chomikoo-sidebar-options' );
 		add_settings_field( 'sidebar-name', 'Full Name', 'chomikoo_sidebar_name', 'chomikoo_theme', 'chomikoo-sidebar-options' );
 		add_settings_field( 'sidebar-description', 'Description', 'chomikoo_sidebar_description', 'chomikoo_theme', 'chomikoo-sidebar-options' );
@@ -66,25 +67,36 @@
 		add_settings_section( 'chomikoo-theme-options', 'Theme Options', 'chomikoo_theme_options', 'chomikoo_theme_theme' );
 
 		add_settings_field( 'post-formats', 'Post Formats', 'chomikoo_post_formats', 'chomikoo_theme_theme', 'chomikoo-theme-options');
-
 		add_settings_field( 'custom-header', 'Custom Header', 'chomikoo_custom_header', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 		add_settings_field( 'custom-background', 'Custom Background', 'chomikoo_custom_background', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 
 		// Custom Form Contact 
 		register_setting( 'chomikoo-contact-option', 'activate_contact'  );
-
 		add_settings_section( 'chomikoo-contact-section', 'Contact Form' , 'chomikoo_contact_section', 'chomikoo_theme_contact' );
+		add_settings_field( 'activate_form', 'Activate Contact Form', 'chomikoo_activate_contact', 'chomikoo_theme_contact', 'chomikoo-contact-section', 'chomikoo_theme_settings_page' );
 
-		add_settings_field( 'activate_form', 'Activate Contact Form', 'chomikoo_activate_contact', 'chomikoo_theme_contact', 'chomikoo-contact-section' );
-
-
-
+		// Custom CSS 
+		register_setting( 'chomikoo-custom-css-options', 'chomikoo_css', 'chomikoo_sanitize_custom_css' );
+		add_settings_section( 'chomikoo-custom-css-section', 'Custom CSS', 'chomikoo_custom_css_section_callback', 'chomikoo_theme_css' );
+		add_settings_field( 'custom-css', 'Insert your Custom CSS', 'chomikoo_custom_css_callback', 'chomikoo_theme_css', 'chomikoo-custom-css-section' );
 	}
 
+	// Css Section
+	function chomikoo_custom_css_section_callback() {
+		echo 'Cssy';
+	}
+
+	function chomikoo_custom_css_callback() {
+		$css = get_option( 'chomikoo_css' );
+		$css = ( empty($css) ? '/* Custom CSS */' : $css );
+		// echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa		aaaaaaa ' . $css;
+		echo '<div id="customCss">' . $css . '</div><textarea id="chomikoo_css" name="chomikoo_css" style=display:none;visible:hidden">' . $css . '</textarea>';
+	}
 
 	// Contact section sunctions0
+
 	function chomikoo_contact_section() {
-		echo 'Activate and Deactivate the Built-in Contact Form';
+		echo 'Activate and Deactivate the Built-in Contact Form <--';
 	}
 
 	function chomikoo_activate_contact() {
@@ -180,11 +192,19 @@
 		echo '<input type="text" name="linked_handler" value="' . $linked . '" placeholder="LinkedIn Login"/>';
 	}
 
+	// Sanitization settings
+	function chomikoo_sanitize_custom_css( $input ){
+		$output = esc_textarea( $input );
+		echo 'output css '. $output; 
+		return $output;
+	}
+
 	function chomikoo_sanitize_twitter_handler( $input ){
 		$output = sanitize_text_field( $input );
 		$output = str_replace('@', '', $output);
 		return $output;
 	}
+
 
 	// TEMPLATE SUBMENU FUNCTIONS 
 	function chomikoo_theme_create_page() {
@@ -199,12 +219,12 @@
 		require_once( THEME_PATH . 'template-parts/admin/theme-contact-form.php' );
 	}
 
-	function theme_options_settings_page() {
-		echo 'Hello from theme_options_settings_page';
+	function chomikoo_theme_settings_page() {
+		require_once( THEME_PATH . 'template-parts/admin/theme-custom-css.php' );
 	}
 
-	function chomikoo_theme_settings_page() {
-		echo 'cssy';
+	function theme_options_settings_page() {
+		echo 'Hello from theme_options_settings_page';
 	}
 
 

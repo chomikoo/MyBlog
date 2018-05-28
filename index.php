@@ -10,6 +10,7 @@ get_header(); ?>
 
 	<main>
 	
+		Index
 
 	</main>
 

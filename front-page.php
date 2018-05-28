@@ -10,6 +10,7 @@ get_header(); ?>
 
 	<main>
 	
+		Front Page
 
 	</main>
 
