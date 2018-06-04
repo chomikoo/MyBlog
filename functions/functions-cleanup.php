@@ -9,7 +9,7 @@
 	========================
 */
 
-// remove ver string from js and css
+// remove ver string ,from js and css
 function chomikoo_remove_wp_version_strings( $src ) {
 
     if ( strpos( $src, 'ver=' . get_bloginfo( 'version' ) ) )

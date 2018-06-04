@@ -37,13 +37,6 @@
 		}
 	}
 
-	/////////////////////////////////////////////////
-	//Addditional image size for placeholde lazyload
-	/////////////////////////////////////////////////
-
-	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'placeholder', 16  );
-	add_image_size( 'full', 1440  );
 
 	//////////////////////////
 	//  SRCSET THUMBNAILS

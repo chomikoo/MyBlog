@@ -2,7 +2,6 @@
 Theme Name: ChomikooBlog
 Theme URI: github
 Author: Chomikoo
-
 Version:  1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE     
@@ -13,23 +12,19 @@ Tags: Photography, portfolio, trening, blog, cooking,lifestyle, coding, trevel
 
 /* --------------------------------------------------------------*/
 // # CSS VENDORS       
+@import "./../../node_modules/bootstrap/scss/bootstrap";
+
 
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
-@import "helpers/normalize";
+// @import "helpers/normalize";
  
 /*--------------------------------------------------------------
 # Variables
 --------------------------------------------------------------*/
 @import "helpers/variables";
 
-/*--------------------------------------------------------------
-# Mixins
---------------------------------------------------------------*/
-// @import "helpers/mixins";    
-@import "layout/breakpoints"; 
-@import "layout/grid";
 
 /*--------------------------------------------------------------
 # Fonts 
@@ -43,6 +38,8 @@ Tags: Photography, portfolio, trening, blog, cooking,lifestyle, coding, trevel
 @import 'layout/wordpress';  
 
 @import 'layout/buttons';  
+@import 'layout/content-types';  
+
 
 @import 'pages/header';  
 @import 'pages/index';  

@@ -47,11 +47,19 @@ function chomikoo_load_scripts() {
 
 	$ver = time();
 
-	wp_enqueue_style( 'styles', THEME_URL . 'styles.css', array(), $ver, 'all' );
+	wp_enqueue_style( 'styles', THEME_URL . 'style.css', array(), $ver, 'all' );
 
-	// wp_deregister_script( 'jquery' );
+	wp_deregister_script( 'jquery' );
 
-	wp_enqueue_script( 'scripts', THEME_URL . 'scripts/script.js', array(), $ver, 'all'  );
+	//DEVELOPMENT
+	wp_enqueue_script( 'jquery', THEME_URL . 'node_modules/jquery/jquery.js', false, '1.9.1', true  );
+
+	wp_enqueue_script( 'popper', THEME_URL . 'node_modules/popper.js/dist/umd/popper.js', array('jquery'), '1.14.3', 'all'  );
+
+	wp_enqueue_script( 'bootstrap', THEME_URL . 'node_modules/bootstrap/dist/js/bootstrap.js', array('jquery'), $ver, 'all'  );
+
+	wp_enqueue_script( 'myscript', THEME_URL . 'src/js/script.js', array('jquery'), $ver, 'all'  );
+
 
 }
 
