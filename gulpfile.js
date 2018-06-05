@@ -43,7 +43,7 @@ const imagemin = require('gulp-imagemin');
 gulp.task('browserSync', () => {
   var files = [
     './style.css',
-    '*.php',
+    '**/*.php',
     '/src/js/*.js'
   ];
 
@@ -90,8 +90,6 @@ gulp.task('sass', () => {
 
 gulp.task('scripts', () => {
   return gulp.src([
-      'src/js/vendors/lazysizes.js',
-      'src/js/vendors/slick.js',
       'src/js/script.js'
     ])
     .pipe(concat('main.min.js'))
@@ -160,9 +158,9 @@ gulp.task('useref', () => {
 
 
 gulp.task('watch', ['browserSync', 'sass'], () => {
-  gulp.watch('src/sass/**/*.scss', ['sass'],  browserSync.reload());
+  // gulp.watch('src/sass/**/*.scss', ['sass'],  browserSync.reload());
   gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
-  gulp.watch('*.php', browserSync.reload());
+  gulp.watch('**/*.php', browserSync.reload());
 });
 
 

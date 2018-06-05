@@ -10,11 +10,11 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class() ?>>
 	
-	<header class="entry-header">
+	<header class="entry-header text-center">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<div class="entry-title"> 
+		<div class="entry-meta"> 
 
 			<?php echo chomikoo_posted_meta(); ?>
 
@@ -38,11 +38,12 @@
 			
 			<?php the_excerpt(); ?>
 
-		</div><!-- .entry-excerpt -->
 
-		<div class="button-container text-center">
-			<a href="<?php the_permalink(); ?>" class="btn "><?php _e( 'Read More' ); ?></a>
-		</div>
+			<div class="button-container text-center">
+				<a href="<?php the_permalink(); ?>" class="btn btn--more"><?php _e( 'Read More' ); ?></a>
+			</div>
+			
+		</div><!-- .entry-excerpt -->
 
 	</div>
 

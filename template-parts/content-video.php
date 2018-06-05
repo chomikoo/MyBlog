@@ -9,7 +9,7 @@
 ?>
 
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('chomikoo-video') ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('chomikoo-video-format') ?>>
 	
 	<header class="entry-header">
 
@@ -17,12 +17,10 @@
 			<?php echo chomikoo_get_embedded_media( array('video', 'iframe') ) ?>
 		</div>
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
-		<div class="entry-title"> 
-
+		<?php the_title( '<h1 class="entry-title text-center"><a href="'. esc_url( get_permalink() ) .'" rel="bookmark">', '</a></h1>'); ?>
+		
+		<div class="entry-meta text-center ">
 			<?php echo chomikoo_posted_meta(); ?>
-
 		</div><!-- .entry-title -->
 
 	</header><!-- .entry-header -->
@@ -33,11 +31,19 @@
 
 			<a href="<?php the_permalink(); ?>">
 				
-				<div class="standard-featured background-image" style="background-image: url(<?php echo chomikoo_get_attachment(); ?>)"></div>
+				<div class="standard-featured background-image text-center" style="background-image: url(<?php echo chomikoo_get_attachment(); ?>)"></div>
 
 			</a>
 
 		<?php endif; ?>
+
+		<div class="entry-excerpt text-center">
+			<?php the_excerpt(); ?>
+		</div>
+		
+		<div class="button-container text-center">
+			<a href="<?php the_permalink(); ?>" class="btn "><?php _e( 'Read More' ); ?></a>
+		</div>
 
 	</div>
 

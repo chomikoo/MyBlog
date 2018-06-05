@@ -72,21 +72,18 @@ function chomikoo_posted_footer() {
 			$comments = __('1 Comment');
 		}
 
-		$comments = '<a href="' . get_comments_link() . '">' . $comments . ' <span class="far fa-comments"></span></a>';
+		$comments = '<a class="comments-link" href="' . get_comments_link() . '">' . $comments . ' <span class="far fa-comments"></span></a>';
 
 	} else {
 		$comments = __( 'Comments are closet' );
 	}
 
-	return '<div class="post-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">' . get_the_tag_list('<div class="tags-list"> <span class="fas fa-tags"></span>', '', '</div>') . '</div><div class="col-xs-12 col-sm-6">' . $comments . '</div></div></div>';
+	return '<div class="post-footer__container"><div class="row"><div class="col-12 col-sm-6">' . get_the_tag_list('<div class="tags-list"> <span class="fas fa-tags"></span>', ', ', '</div>') . '</div><div class="col-12 col-sm-6 text-right">' . $comments . '</div></div></div>';
 }
 
 function chomikoo_get_attachment( $num = 1 ){
-	// echo 'num 1' .$num .'<br>';
-	$output = '';
+		$output = '';
 	if( has_post_thumbnail() && $num == 1 ): 
-	// echo 'num 2' .$num .'<br>';
-
 		$output = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
 	else:
 		$attachments = get_posts( array( 
@@ -94,28 +91,17 @@ function chomikoo_get_attachment( $num = 1 ){
 			'posts_per_page' => $num,
 			'post_parent' => get_the_ID()
 		) );
-	// echo 'num 3' .$num .'<br>';
-	// echo 'attachment ' .$attachments .'<br>';
-	// var_dump($attachments);
-
 		if( $attachments && $num == 1 ):
-	// echo 'num 4' .$num .'<br>';
-
 			foreach ( $attachments as $attachment ):
 				$output = wp_get_attachment_url( $attachment->ID );
-	// echo 'num 5' .$num .'<br>';
-
 			endforeach;
 		elseif( $attachments && $num > 1 ):
-	// echo 'num 6' .$num .'<br>';
-
 			$output = $attachments;
 		endif;
 		
 		wp_reset_postdata();
 		
 	endif;
-	// echo '/output' . $output .'<br>';
 	
 	return $output;
 }

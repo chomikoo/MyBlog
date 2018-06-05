@@ -9,13 +9,13 @@
 ?>
 
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('chomikoo-audio') ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('chomikoo-audio-format') ?>>
 	
-	<header class="entry-header">
+	<header class="entry-header d-flex align-items-baseline">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<div class="entry-title"> 
+		<div class="entry-meta"> 
 
 			<?php echo chomikoo_posted_meta(); ?>
 
