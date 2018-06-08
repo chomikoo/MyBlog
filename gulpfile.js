@@ -158,7 +158,7 @@ gulp.task('useref', () => {
 
 
 gulp.task('watch', ['browserSync', 'sass'], () => {
-  // gulp.watch('src/sass/**/*.scss', ['sass'],  browserSync.reload());
+  gulp.watch('src/sass/**/*.scss', ['sass'],  browserSync.reload());
   gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
   gulp.watch('**/*.php', browserSync.reload());
 });

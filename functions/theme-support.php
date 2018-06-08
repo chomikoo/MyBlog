@@ -32,9 +32,9 @@ if( @$background ){
 add_theme_support( 'post-thumbnails' );
 
 /* 
-
+	=====================
 	BLOG CUSTOM FUNCTIONS
-
+	=====================
 */
 
 function chomikoo_posted_meta() {
@@ -122,4 +122,35 @@ function chomikoo_grab_url() {
 		return false;
 	}
 	return esc_url_raw( $links[1] );
+}
+
+
+function chomikoo_grab_current_uri() {
+	$http = ( isset( $_SERVER["HTTPS"] ) ? 'https://' : 'http://' );
+	$referer = $http . $_SERVER["HTTP_HOST"];
+	$archive_url = $referer . $_SERVER["REQUEST_URI"];
+	
+	return $archive_url;
+}
+
+
+/*
+	========================
+	SINGLE POST CUSTOM FUNCTIONS
+	========================
+*/
+function chomikoo_post_navigation(){
+	
+	$nav = '<div class="row">';
+	
+	$prev = get_previous_post_link( '<div class="post-link-nav"><span class="chevron-left" aria-hidden="true"><</span> %link</div>', '%title' );
+	$nav .= '<div class="col-xs-12 col-sm-6">' . $prev . '</div>';
+	
+	$next = get_next_post_link( '<div class="post-link-nav">%link <span class="chevron-right" aria-hidden="true">></span></div>', '%title' );
+	$nav .= '<div class="col-xs-12 col-sm-6 text-right">' . $next . '</div>';
+	
+	$nav .= '</div>';
+	
+	return $nav;
+	
 }
