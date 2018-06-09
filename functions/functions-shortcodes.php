@@ -32,6 +32,7 @@ function chomikoo_tooltiop( $atts, $content = null ) {
 add_shortcode( 'tooltip', 'chomikoo_tooltiop' );
 //[tooltip placement="top" title="asdasdas asdasd "]This is a content[/tooltip]
 
+
 function chomikoo_popover( $atts, $content = null ) {
 
 	$atts = shortcode_atts( 
@@ -48,5 +49,7 @@ function chomikoo_popover( $atts, $content = null ) {
 
 }
 
-//[popover placement="top" title="asdasdas asdasd "]This is a content[/popover]
+add_shortcode( 'popover', 'chomikoo_popover' );
+
+//[popover placement="top" title="Test Title" trigger="click" content="This is popover content"]Lorem ipsum dolor [/popover]
 

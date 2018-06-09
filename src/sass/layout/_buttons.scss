@@ -3,3 +3,10 @@
 BUTTONS
 =========================
 */
+.chomikoo-tooltip,
+.chomikoo-popover {
+	color: pink;
+	&:hover, &focus {
+		color: black;
+	}
+}
