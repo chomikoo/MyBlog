@@ -126,6 +126,10 @@
 	// Helper Functions
 
 	function revealPosts(){
+		console.log('reveal');
+
+		$('[data-toggle="tooltip"]').tooltip();
+		$('[data-toggle="popover"]').popover();
 
 		var posts = $('article:not(.reveal)');
 		var i = 0;
