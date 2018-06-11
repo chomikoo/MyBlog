@@ -31,6 +31,9 @@ if( @$background ){
 
 add_theme_support( 'post-thumbnails' );
 
+// add_theme_support( 'html5', array( 'comment-list',  ) );
+
+
 /* 
 	=====================
 	BLOG CUSTOM FUNCTIONS
@@ -152,5 +155,51 @@ function chomikoo_post_navigation(){
 	$nav .= '</div>';
 	
 	return $nav;
+	
+}
+
+
+// Share options 
+
+function chomikoo_share_this( $content ) {
+
+	if( is_single() ){
+
+		$content .= '<div class="chomikoo_shareThis"><h4>Udostępnij</h4>';
+
+		$title = get_the_title();
+		$permalink = get_permalink();
+
+		$twitterHandler = ( get_option('twitter_handler') ? '&amp;via=' . esc_attr( get_option('twitter_handler') ) : '' );
+
+		$twitter = 'https://twitter.com/intent/tweet?text=Hey! Zobacz: ' . $title . '&amp;url=' . $permalink . $twitterHandler .'';
+		$facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $permalink;
+		$google = 'https://plus.google.com/share?url=' . $permalink;
+
+
+		$content .= '<ul>';
+		$content .= '<li><a href="' . $twitter . '" target="_blank" rel="nofollow"><span class="fab fa-twitter-square"></span></a></li>';
+		$content .= '<li><a href="' . $facebook . '" target="_blank" rel="nofollow"><span class="fab fa-facebook-square"></span></a></li>';
+		$content .= '<li><a href="' . $google . '" target="_blank" rel="nofollow"><span class="fab fa-google-plus-square"></span></a></li>';
+		$content .= '</ul></div>';
+		
+		return $content;
+	
+	} else {
+		return $content;
+	}
+
+}
+
+add_filter( 'the_content' , 'chomikoo_share_this');
+
+
+function chomikoo_get_post_navigation(){
+	
+	if( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ):
+	
+		require( get_template_directory() . '/template-parts/chomikoo-comment-nav.php' );
+	
+	endif;
 	
 }
