@@ -16,7 +16,7 @@ require $functions_path . 'ajax.php' ;
 require $functions_path . 'functions-shortcodes.php' ;
 
 
-// require $functions_path . 'functions-widgets.php' ;
+require $functions_path . 'functions-widgets.php' ;
 // require $functions_path . 'functions-shortcodes.php' ;
 // require $functions_path . 'functions-assets.php' ;
 // require $functions_path . 'functions-mylib.php' ;

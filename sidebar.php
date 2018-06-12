@@ -4,14 +4,14 @@
 *	@package MyBlog
 */
 
-get_header(); ?>
+if( !is_active_sidebar( 'chomikoo-sidebar' ) ) {
+	return;
+}
 
+?>
 
-	<main>
-	
-	
+<aside id="secondary" class="widget-area sideabr" role="complementary"> 
 
-	</main>
+	<?php dynamic_sidebar( 'chomikoo-sidebar' ); ?>
 
-
-<?php get_footer(); ?>
+</aside>

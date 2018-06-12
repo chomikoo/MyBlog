@@ -203,3 +203,27 @@ function chomikoo_get_post_navigation(){
 	endif;
 	
 }
+
+
+/*
+	=================
+	SIDEBAR FUNCTION
+	=================
+*/
+
+function chomikoo_sidebar_init() {
+
+	register_sidebar(
+		array(
+			'name' => esc_html( 'Chomikoo Sidebar', 'chomikootheme' ),
+			'id' 	=> 'chomikoo-sidebar',
+			'description' 	=> 'Dynamic Sidebar',
+			'before_widget' => '<section id="%1s" class="chomikoo-widget %2$s">',
+			'after_widget'	=> '</section>',
+			'before_title' => '<h2 class="chomikoo-widget-title">',
+			'after_title' => '</h2>'
+		)
+	);
+}
+
+add_action( 'widgets_init', 'chomikoo_sidebar_init' );

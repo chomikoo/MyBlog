@@ -11,15 +11,7 @@ get_header(); ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110577987-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
 
-	gtag('config', 'UA-110577987-1');
-	</script>
 	<meta charset="<?php bloginfo('charset'); ?>">
 
 	<?php if( is_search() ) { ?>
@@ -50,6 +42,9 @@ get_header(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+
+	<?php get_sidebar(
+	); ?>	
 	
 	<header id="header" class="header" style="background: url(<?php header_image(); ?>);">	
 			 
