@@ -57,18 +57,19 @@ add_shortcode( 'popover', 'chomikoo_popover' );
 
 // Contact form shortcode 
 
-function chomikoo_contact_form( $atts, $content ){
-	// [contact_form]
+// function chomikoo_contact_form( $atts, $content ){
+// 	// [contact_form]
 
-	$atts = shortcode_atts( 
-		array(),
-		$atts,
-		'contact_form'
-	);
+// 	$atts = shortcode_atts( 
+// 		array(),
+// 		$atts,
+// 		'contact_form'
+// 	);
 
-	ob_start();
-	include 'template-parts/contact-from.php';
-	return ob_get_clean();
-}
+// 	ob_start();
 
-add_shortcode( 'contact_form', 'chomikoo_contact_form' );
+// 	include dirname(__DIR__). '/template-parts/contact-from.php';
+// 	return ob_get_clean();
+// }
+
+// add_shortcode( 'contact_form', 'chomikoo_contact_form' );
