@@ -2,6 +2,8 @@
 
 <?php settings_errors(); ?>
 
+<p>Użyj tego <strong>shortcodu</strong> żeby aktywować formularz kntaktowy na wybranej stronie</p>
+<p><code>[contact_form]</code></p>
 
 <form method="post" action="options.php" class="chomikoo-general-form">
 	

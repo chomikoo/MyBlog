@@ -43,8 +43,6 @@ get_header(); ?>
 
 <body <?php body_class(); ?>>
 
-	<?php get_sidebar(
-	); ?>	
 	
 	<header id="header" class="header" style="background: url(<?php header_image(); ?>);">	
 			 
@@ -83,3 +81,8 @@ get_header(); ?>
 				</div>
 
 		</nav>
+
+
+	<div id="secondary" class="sidebar">
+		<?php get_sidebar(); ?>	
+	</div>

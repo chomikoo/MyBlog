@@ -26,6 +26,8 @@ get_header(); ?>
 
 									the_post();
 
+									chomikoo_save_post_views( get_the_ID() );
+
 									get_template_part( 'template-parts/single', get_post_format() );
 
 									echo chomikoo_post_navigation();

@@ -53,3 +53,22 @@ add_shortcode( 'popover', 'chomikoo_popover' );
 
 //[popover placement="top" title="Test Title" trigger="click" content="This is popover content"]Lorem ipsum dolor [/popover]
 
+
+
+// Contact form shortcode 
+
+function chomikoo_contact_form( $atts, $content ){
+	// [contact_form]
+
+	$atts = shortcode_atts( 
+		array(),
+		$atts,
+		'contact_form'
+	);
+
+	ob_start();
+	include 'template-parts/contact-from.php';
+	return ob_get_clean();
+}
+
+add_shortcode( 'contact_form', 'chomikoo_contact_form' );
