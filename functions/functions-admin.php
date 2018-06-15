@@ -19,8 +19,7 @@
 		add_submenu_page( 'chomikoo_theme', 'Theme Options', 'Theme Options', 'manage_options' , 'chomikoo_theme_theme', 'chomikoo_theme_support_page' );
 		// Custom CSS
 		add_submenu_page( 'chomikoo_theme', 'Theme CSS Options', 'Custom CSS', 'manage_options' , 'chomikoo_theme_css', 'chomikoo_theme_settings_page' );
-		// Contact form
-		// add_submenu_page( 'chomikoo_theme', 'Message options', 'Contact Form', 'manage_options' , 'chomikoo_theme_contact', 'chomikoo_theme_contact_form_page' );
+	
 
 		add_action( 'admin_init', 'chomikoo_custom_settings');
 	}
@@ -70,11 +69,6 @@
 		add_settings_field( 'custom-header', 'Custom Header', 'chomikoo_custom_header', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 		add_settings_field( 'custom-background', 'Custom Background', 'chomikoo_custom_background', 'chomikoo_theme_theme', 'chomikoo-theme-options' );
 
-		// Custom Form Contact 
-		// register_setting( 'chomikoo-contact-option', 'activate_contact'  );
-		// add_settings_section( 'chomikoo-contact-section', 'Contact Form' , 'chomikoo_contact_section', 'chomikoo_theme_contact' );
-		// add_settings_field( 'activate_form', 'Activate Contact Form', 'chomikoo_activate_contact', 'chomikoo_theme_contact', 'chomikoo-contact-section', 'chomikoo_theme_settings_page' );
-
 		// Custom CSS 
 		register_setting( 'chomikoo-custom-css-options', 'chomikoo_css', 'chomikoo_sanitize_custom_css' );
 		add_settings_section( 'chomikoo-custom-css-section', 'Custom CSS', 'chomikoo_custom_css_section_callback', 'chomikoo_theme_css' );
@@ -93,17 +87,6 @@
 		echo '<div id="customCss">' . $css . '</div><textarea id="chomikoo_css" name="chomikoo_css" style=display:none;visible:hidden">' . $css . '</textarea>';
 	}
 
-	// Contact section sunctions0
-
-	// function chomikoo_contact_section() {
-	// 	echo 'Activate and Deactivate the Built-in Contact Form <--';
-	// }
-
-	// function chomikoo_activate_contact() {
-	// 	$options = get_option( 'activate_contact' );
-	// 	$checked = ( @$options == 1 ? 'checked' : '' ) ;
-	// 	echo '<label><input type="checkbox" id="custom_header" name="activate_contact" value="1" '.$checked.' /></label>';
-	// }
 
 	function chomikoo_theme_options() {
 		echo 'Activate and Deactivate specyfic Theme Support Options <--';
@@ -265,29 +248,7 @@
 	    }
 	}
 
-	add_action( 'admin_head', 'hide_update_notice_to_all_but_admin_users', 1)
-
-	//cleaning up wp_head() 
-	// remove_action( 'wp_head', 'rsd_link' );
-	// remove_action( 'wp_head', 'wlwmanifest_link' );
-	// remove_action( 'wp_head', 'wp_generator' );
-	// remove_action( 'wp_head', 'start_post_rel_link' );
-	// remove_action( 'wp_head', 'index_rel_link' );
-	// remove_action( 'wp_head', 'adjacent_posts_rel_link' );
-	// remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
-	// remove dashicons from wp_hear
-	// function wpdocs_dequeue_dashicon() {
-	//     if (current_user_can( 'update_core' )) {
-	//         return;
-	//     }
-	//     wp_deregister_style('dashicons');
-	// }
-	
-	// add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+	add_action( 'admin_head', 'hide_update_notice_to_all_but_admin_users', 1);
 
 
-
-
-?>
 

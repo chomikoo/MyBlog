@@ -12,4 +12,3 @@
 	add_action( 'init', 'chomikoo_custom_menu' );
 
 
-?>
